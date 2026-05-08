@@ -19,7 +19,7 @@ function main {
     $digits = ($files | Sort-Object { $_.BaseName.Length } -Descending | Select-Object -First 1).BaseName.Length
     
     ForEach ($f in $files) {
-        $oldName = $f.BaseName
+        $oldName = $f.Name
         $newName = ("{0:D$($digits)}" -f [int]$f.BaseName) + $f.Extension
         Rename-Item -Path $f -NewName $newName
         OutputLog " Success:: $($oldName) -> $($newName)" 
